@@ -1,0 +1,8 @@
+webhookUrl: "http://localhost:8089/owned/twitter"
+consumerKey: "consumer_key"
+consumerSecretKey: "CAW1EmFH8dPrMaDeYWKg4uJzI79axDoh7gVBJWykPLKfzfBjIF"
+
+logging:
+  level: INFO
+  loggers:
+    com.oracle.ci: DEBUG

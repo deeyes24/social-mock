@@ -1,0 +1,7 @@
+com.oracle.ci
+com.oracle.ci.client
+com.oracle.ci.data_management
+com.oracle.ci.health
+com.oracle.ci.publisher
+com.oracle.ci.resources
+com.oracle.ci.scheduled
