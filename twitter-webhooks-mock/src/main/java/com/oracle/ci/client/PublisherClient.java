@@ -43,7 +43,7 @@ public class PublisherClient {
             requestConfigBuilder.setProxy(new HttpHost(config.getProxyHost(), config.getProxyHostPort()));
         }
 
-        logger.info("Creating Http Request");
+        logger.debug("Creating Http Request");
 
         req.setConfig(requestConfigBuilder.build());
         req.setEntity(new StringEntity(payload, "UTF8"));

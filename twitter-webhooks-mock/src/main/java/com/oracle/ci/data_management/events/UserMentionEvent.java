@@ -1,4 +1,4 @@
-package com.oracle.ci.data_management;
+package com.oracle.ci.data_management.events;
 
 
 
@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserMention {
+public class UserMentionEvent {
 
     String created_at;
     long id;
@@ -18,7 +18,7 @@ public class UserMention {
     Map<String, Object> user;
     String lang;
 
-    public UserMention(String authorName) {
+    public UserMentionEvent(String authorName) {
 
         created_at = getCreatedAt();
         id = System.currentTimeMillis();

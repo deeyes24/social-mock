@@ -9,88 +9,88 @@ import org.slf4j.LoggerFactory;
 
 import com.oracle.ci.TwitterWebhooksMockConfiguration;
 import com.oracle.ci.client.PublisherClient;
-import com.oracle.ci.data_management.EventCreator;
-import com.oracle.ci.data_management.Favorite;
-import com.oracle.ci.data_management.FollowEvent;
-import com.oracle.ci.data_management.FollowingMe;
-import com.oracle.ci.data_management.IEventCreator;
-import com.oracle.ci.data_management.QuotedRetweet;
-import com.oracle.ci.data_management.ReceivedDirectMessage;
-import com.oracle.ci.data_management.Reply;
-import com.oracle.ci.data_management.Retweet;
-import com.oracle.ci.data_management.SendDirectMessage;
-import com.oracle.ci.data_management.UserTweet;
+import com.oracle.ci.data_management.events.FavoriteEvent;
+import com.oracle.ci.data_management.events.FollowEvent;
+import com.oracle.ci.data_management.events.FollowingMeEvent;
+import com.oracle.ci.data_management.events.QuotedRetweetEvent;
+import com.oracle.ci.data_management.events.ReceivedDirectMessageEvent;
+import com.oracle.ci.data_management.events.ReplyEvent;
+import com.oracle.ci.data_management.events.RetweetEvent;
+import com.oracle.ci.data_management.events.SendDirectMessageEvent;
+import com.oracle.ci.data_management.events.UserTweetEvent;
 
 public class EventPublisher {
     private static final Logger logger = LoggerFactory.getLogger(EventPublisher.class);
 
     private TwitterWebhooksMockConfiguration config;
     private PublisherClient client;
-    private IEventCreator creator;
 
     public EventPublisher(TwitterWebhooksMockConfiguration config) {
         this.config = config;
         client = new PublisherClient(config);
-        creator = new EventCreator(config);
+
     }
 
     public void pushTwitterEvents() {
-        String payload = creator.createUserMention();
-        pushTwitterEvents(payload);
-        logger.info("Published a Twitter UserMention:  " + payload);
 
-        payload = new UserTweet().getUserTweet();
+        String payload;
+
+        payload = new UserTweetEvent().getUserTweet("New Tweet " + System.currentTimeMillis(), "TestAuthor");
         pushTwitterEvents(payload);
 
         logger.info("Published a Tweet Event:  " + payload);
 
-        payload = new Retweet().getRetweet();
+        payload = new RetweetEvent().getRetweet("New Reweet Event " + System.currentTimeMillis(), "TestAuthor");
 
         pushTwitterEvents(payload);
 
         logger.info("Published a Retweet Event:" + payload);
 
-        payload = new Favorite().getFavorite();
+        payload = new FavoriteEvent().getFavorite("Existing Tweet Event" + System.currentTimeMillis(),
+                "Original AUthor", "Favorited Author");
 
         pushTwitterEvents(payload);
 
         logger.info("Published Favorited Event {}", payload);
 
-        payload = new Reply().getReply();
+        payload = new ReplyEvent().getReply("Original Tweet Text" + System.currentTimeMillis(), "Tweeting AUthor",
+                "Original Author");
 
         pushTwitterEvents(payload);
 
         logger.info("Published Reply Event {}", payload);
 
-        payload = new QuotedRetweet().getQuotedRetweet();
+        payload = new QuotedRetweetEvent().getQuotedRetweet("Quoted Retweet ","Original Author");
 
         pushTwitterEvents(payload);
 
         logger.info("Published QuotedRetweet Event {}", payload);
 
-        payload = new FollowEvent().getFollowEvent();
+        payload = new FollowEvent().getFollowEvent("FollowingAuthor", "FollowedAuthor");
 
         pushTwitterEvents(payload);
 
         logger.info("Published Follow Event {}", payload);
+        
+        payload = new FollowingMeEvent().getFollowingMeEvent("FollowedAuthor","FollowingAuthor");
 
-        payload = new SendDirectMessage().getSendDM();
+        pushTwitterEvents(payload);
+
+        logger.info("Published FollowMe Event {}", payload);
+        
+
+        payload = new SendDirectMessageEvent().getSendDM("SenderAuthor","ReceivedAuthor","DirectMessageText");
 
         pushTwitterEvents(payload);
 
         logger.info("Published Send DM Event {}", payload);
 
-        payload = new FollowingMe().getFollowingMeEvent();
 
-        pushTwitterEvents(payload);
-
-        logger.info("Published FollowMe Event {}", payload);
-
-        payload = new ReceivedDirectMessage().getReceivedDM();
-
-        pushTwitterEvents(payload);
-
-        logger.info("Published Received DM Event {}", payload);
+//        payload = new ReceivedDirectMessageEvent().getReceivedDM();
+//
+//        pushTwitterEvents(payload);
+//
+//        logger.info("Published Received DM Event {}", payload);
 
     }
 
