@@ -1,6 +1,8 @@
-webhookUrl: "http://localhost:8089/owned/twitter"
-consumerKey: "consumer_key"
-consumerSecretKey: "CAW1EmFH8dPrMaDeYWKg4uJzI79axDoh7gVBJWykPLKfzfBjIF"
+webhookUrl: "<Replace_this_with_Webhook_Endpoint_URL"   #Ex : http://localhost:8089/owned/twitter
+consumerKey: "<Replace_with_consumer_key_of_your_Twitter_App"
+consumerSecretKey: "<Replace_this_with_your_Twitter_App's_consmer_key_secret_key"
+#proxyUrl: "<Replace_with_Proxy_details_needed_to_connect_to_your_webhook_url.Otherwise remove thisshSleepTime"
+#publishSleepTime: "Configure_the_sleep_time_between_cycles_of_publishing_webhook_events" #use this as reference https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html
 
 logging:
   level: INFO

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.ci.twitter_data.Tweet;
 
 /**
- * @author Kapil
+ * @author deeyes
  *
  */
 public class Utils {

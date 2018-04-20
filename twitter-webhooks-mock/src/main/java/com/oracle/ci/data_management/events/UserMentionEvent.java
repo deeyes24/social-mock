@@ -1,7 +1,5 @@
 package com.oracle.ci.data_management.events;
 
-
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;

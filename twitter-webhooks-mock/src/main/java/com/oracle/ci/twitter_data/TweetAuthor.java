@@ -96,7 +96,7 @@ public class TweetAuthor {
     public TweetAuthor(String name) {
         this.name = name;
         this.screen_name = name;
-        this.id = (long) name.hashCode();
+        this.id = Long.MAX_VALUE - name.hashCode();
         this.id_str = "" + id;
 
     }

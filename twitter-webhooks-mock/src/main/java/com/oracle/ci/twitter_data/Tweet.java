@@ -81,7 +81,7 @@ public class Tweet {
     Long timestamp_ms = System.currentTimeMillis();
 
     public Tweet(String text, String authorName) {
-        this.id = (long) text.hashCode();
+        this.id = Long.MAX_VALUE- text.hashCode();
         this.id_str = "" + id;
         this.text = text;
         this.user = new TweetAuthor(authorName);
